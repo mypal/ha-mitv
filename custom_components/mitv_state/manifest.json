@@ -3,7 +3,7 @@
   "name": "mitiv_state",
   "documentation": "https://github.com/mypal/ha-mitv",
   "requirements": [
-    "pymitv==1.4.3"
+    "pymitv==1.5.0"
   ],
   "dependencies": [],
   "codeowners": [
