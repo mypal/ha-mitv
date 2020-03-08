@@ -1,0 +1,12 @@
+{
+  "domain": "mitiv_state",
+  "name": "mitiv_state",
+  "documentation": "https://github.com/mypal/ha-mitv",
+  "requirements": [
+    "pymitv==1.4.3"
+  ],
+  "dependencies": [],
+  "codeowners": [
+    "@mypal"
+  ]
+}
