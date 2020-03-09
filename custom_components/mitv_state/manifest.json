@@ -1,6 +1,6 @@
 {
-  "domain": "mitiv_state",
-  "name": "mitiv_state",
+  "domain": "mitv_state",
+  "name": "mitv_state",
   "documentation": "https://github.com/mypal/ha-mitv",
   "requirements": [
     "pymitv==1.5.0"
