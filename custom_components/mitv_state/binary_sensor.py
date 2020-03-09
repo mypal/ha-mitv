@@ -80,4 +80,5 @@ class QueryThread(Thread):
             new = Discover().check_ip('192.168.1.80')
             if new != self._mitv.is_on:
                 self._mitv.update(new)
+                print(self._mitv.name+':'+new)
             time.sleep(self._delay)
