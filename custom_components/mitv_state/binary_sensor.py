@@ -69,6 +69,10 @@ class MitvBinarySensor(BinarySensorDevice):
         """Return true if the binary sensor is on."""
         return self._state
 
+    @property
+    def host(self):
+        return self._host
+
 
 class QueryThread(Thread):
     def __init__(self, mitv: MitvBinarySensor):
@@ -77,9 +81,13 @@ class QueryThread(Thread):
         self._delay = 5
 
     def run(self) -> None:
+        from pymitv import Discover
         while True:
-            from pymitv import Discover
-            new = Discover().check_ip('192.168.1.80')
-            if new != self._mitv.is_on:
-                self._mitv.update(new)
+            try:
+                new = Discover().check_ip(self._mitv.host)
+                _LOGGER.debug('%s\'s state is %s', (self._mitv.name, new))
+                if new != self._mitv.is_on:
+                    self._mitv.update(new)
+            except Exception:
+                _LOGGER.debug('exception occurred: %s' % Exception)
             time.sleep(self._delay)
