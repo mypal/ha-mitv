@@ -27,7 +27,8 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     # If a hostname is set. Discovery is skipped.
     host = config.get(CONF_HOST)
     name = config.get(CONF_NAME)
-    add_entities(MitvBinarySensor(tv, DEFAULT_NAME) for tv in Discover().scan())
+    # add_entities(MitvBinarySensor(tv, DEFAULT_NAME) for tv in Discover().scan())
+    add_entities(MitvBinarySensor(name, host))
 
 
 class MitvBinarySensor(BinarySensorDevice):
