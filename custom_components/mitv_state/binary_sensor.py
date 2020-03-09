@@ -45,7 +45,6 @@ class MitvBinarySensor(BinarySensorDevice):
         _LOGGER.debug('%s(%s) registered' % (name, host))
 
     def update(self, state):
-        _LOGGER.debug('%s\'s state changes to %s' % (self.name, state))
         self._state = state
         self.schedule_update_ha_state()
 
@@ -89,5 +88,5 @@ class QueryThread(Thread):
                 if new != self._mitv.is_on:
                     self._mitv.update(new)
             except Exception:
-                _LOGGER.debug('exception occurred: %s' % Exception)
+                _LOGGER.debug('exception occurred: %s' % str(Exception))
             time.sleep(self._delay)
