@@ -42,8 +42,10 @@ class MitvBinarySensor(BinarySensorDevice):
         self._sensor_type = DEVICE_CLASS_POWER
         self._thread = QueryThread(self)
         self._thread.start()
+        _LOGGER.debug('%s(%s) registered' % (name, host))
 
     def update(self, state):
+        _LOGGER.debug('%s\'s state changes to %s' % (self.name, state))
         self._state = state
         self.schedule_update_ha_state()
 
@@ -80,5 +82,4 @@ class QueryThread(Thread):
             new = Discover().check_ip('192.168.1.80')
             if new != self._mitv.is_on:
                 self._mitv.update(new)
-                _LOGGER.debug(self._mitv.name+':'+new)
             time.sleep(self._delay)
