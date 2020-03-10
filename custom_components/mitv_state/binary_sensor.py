@@ -46,8 +46,11 @@ class MitvBinarySensor(BinarySensorDevice):
         _LOGGER.debug('%s(%s) registered' % (name, host))
 
     def update(self):
-        self._state = bool(Discover().check_ip(self._host))
-        _LOGGER.debug('%s(%s) changes to %s' % (self.name, self.host, self._state))
+        try:
+            self._state = bool(Discover().check_ip(self._host))
+            _LOGGER.debug('%s(%s) changes to %s' % (self.name, self._host, self._state))
+        except Exception:
+            _LOGGER.debug(Exception)
 
     @property
     def device_class(self):
